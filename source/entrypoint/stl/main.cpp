@@ -3,8 +3,8 @@
 int main(int argc, char* argv[]) {
 
     // Replace these placeholders with your actual API credentials
-    std::string consumerKey = "HRTuFcju8TpJJoJwhPTeh78y8";
-    std::string consumerSecret = "ZxiB9Ss6fPYJ7pb1lIOgSVC2MeVVDjM0fJmaBjscoGSPxIwNyg";
+    std::string consumerKey = "YourApiKey";
+    std::string consumerSecret = "YourSecretKey";
 
     // Create an instance of the XCLI class
     XCLI cli(consumerKey, consumerSecret);
