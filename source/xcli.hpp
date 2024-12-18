@@ -1,5 +1,5 @@
-#ifndef TWITTERCLI_HPP
-#define TWITTERCLI_HPP
+#ifndef XCLI_HPP
+#define XCLI_HPP
 
 #include "common.hpp"
 #include <curl/curl.h>
@@ -51,10 +51,10 @@ public:
 };
 
 /**
- * @class TwitterCLI
+ * @class XCLI
  * @brief A command-line interface for interacting with the Twitter API.
  */
-class TwitterCLI {
+class XCLI {
 private:
     Types::String consumerKey;   ///< Twitter API consumer key.
     Types::String consumerSecret; ///< Twitter API consumer secret.
@@ -100,11 +100,11 @@ private:
 
 public:
     /**
-     * @brief Constructs a TwitterCLI object with the given API keys.
+     * @brief Constructs a XCLI object with the given API keys.
      * @param key The Twitter API consumer key.
      * @param secret The Twitter API consumer secret.
      */
-    TwitterCLI(Types::String key, Types::String secret);
+    XCLI(Types::String key, Types::String secret);
 
     /**
      * @brief Authenticates with Twitter using OAuth 2.0 and retrieves a bearer token.
@@ -127,4 +127,4 @@ public:
     void run(int argc, char* argv[]);
 };
 
-#endif // TWITTERCLI_HPP
+#endif // XCLI_HPP

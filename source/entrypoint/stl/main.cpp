@@ -1,4 +1,4 @@
-#include "twittercli.hpp"
+#include "xcli.hpp"
 
 int main(int argc, char* argv[]) {
 
@@ -6,8 +6,8 @@ int main(int argc, char* argv[]) {
     std::string consumerKey = "HRTuFcju8TpJJoJwhPTeh78y8";
     std::string consumerSecret = "ZxiB9Ss6fPYJ7pb1lIOgSVC2MeVVDjM0fJmaBjscoGSPxIwNyg";
 
-    // Create an instance of the TwitterCLI class
-    TwitterCLI cli(consumerKey, consumerSecret);
+    // Create an instance of the XCLI class
+    XCLI cli(consumerKey, consumerSecret);
 
     // Run the CLI interface, passing command-line arguments
     cli.run(argc, argv);

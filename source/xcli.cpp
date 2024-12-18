@@ -1,4 +1,4 @@
-#include "twittercli.hpp"
+#include "xcli.hpp"
 
 static size_t WriteCallback(void* contents, size_t size, size_t nmemb, Types::String* outBuffer) {
     auto totalSize = size * nmemb;
@@ -6,10 +6,10 @@ static size_t WriteCallback(void* contents, size_t size, size_t nmemb, Types::St
     return totalSize;
 }
 
-TwitterCLI::TwitterCLI(Types::String key, Types::String secret)
+XCLI::XCLI(Types::String key, Types::String secret)
     : consumerKey(std::move(key)), consumerSecret(std::move(secret)) {}
 
-bool TwitterCLI::loadTokens() {
+bool XCLI::loadTokens() {
     if (!std::filesystem::exists(tokenFile)) {
         Logger::formattedError("Error: Token file '{}' does not exist.", tokenFile);
         return false;
@@ -37,7 +37,7 @@ bool TwitterCLI::loadTokens() {
     return !bearerToken.empty();
 }
 
-void TwitterCLI::saveTokens() {
+void XCLI::saveTokens() {
     Json::Value tokens;
     tokens["bearer_token"] = bearerToken;
     tokens["access_token"] = accessToken;
@@ -55,7 +55,7 @@ void TwitterCLI::saveTokens() {
     Logger::formattedInfo("Tokens saved successfully to '{}'.", tokenFile);
 }
 
-Types::String TwitterCLI::buildQueryString(const Types::MapString& params) {
+Types::String XCLI::buildQueryString(const Types::MapString& params) {
     Types::String query;
     for (const auto& param : params) {
         query += std::format("{}={}&", param.first, param.second);
@@ -64,7 +64,7 @@ Types::String TwitterCLI::buildQueryString(const Types::MapString& params) {
     return query;
 }
 
-CURL* TwitterCLI::initializeCURL(Types::StringView url, Types::String& response, curl_slist* headers) {
+CURL* XCLI::initializeCURL(Types::StringView url, Types::String& response, curl_slist* headers) {
     if (auto curl = curl_easy_init(); curl) {
         curl_easy_setopt(curl, CURLOPT_URL, url.data());
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
@@ -78,7 +78,7 @@ CURL* TwitterCLI::initializeCURL(Types::StringView url, Types::String& response,
     return nullptr;
 }
 
-bool TwitterCLI::authenticateOAuth2() {
+bool XCLI::authenticateOAuth2() {
     constexpr Types::StringView url = "https://api.twitter.com/oauth2/token";
     Types::String response;
     if (auto curl = initializeCURL(url, response); curl) {
@@ -128,7 +128,7 @@ bool TwitterCLI::authenticateOAuth2() {
     return false;
 }
 
-Types::String TwitterCLI::base64Encode(Types::StringView input) {
+Types::String XCLI::base64Encode(Types::StringView input) {
     constexpr auto encodeTable = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     Types::String encoded;
     int val = 0;
@@ -146,7 +146,7 @@ Types::String TwitterCLI::base64Encode(Types::StringView input) {
     return encoded;
 }
 
-void TwitterCLI::getRequest(Types::StringView endpoint, const Types::MapString& params) {
+void XCLI::getRequest(Types::StringView endpoint, const Types::MapString& params) {
     if (bearerToken.empty() && (accessToken.empty() || accessSecret.empty())) {
         if (!loadTokens()) {
             Logger::error("Authenticate first!");
@@ -178,9 +178,9 @@ void TwitterCLI::getRequest(Types::StringView endpoint, const Types::MapString& 
     }
 }
 
-void TwitterCLI::run(int argc, char* argv[]) {
+void XCLI::run(int argc, char* argv[]) {
     if (argc < 2) {
-        Logger::error("Usage: twitter_cli <command> [options]");
+        Logger::error("Usage: xcli <command> [options]");
         return;
     }
 
@@ -194,7 +194,7 @@ void TwitterCLI::run(int argc, char* argv[]) {
         }
     } else if (command == "get") {
         if (argc < 3) {
-            Logger::error("Usage: twitter_cli get <endpoint> [key=value ...]");
+            Logger::error("Usage: xcli get <endpoint> [key=value ...]");
             return;
         }
 
@@ -210,7 +210,7 @@ void TwitterCLI::run(int argc, char* argv[]) {
         getRequest(endpoint, params);
     } else if (command == "space") {
         if (argc < 3) {
-            Logger::error("Usage: twitter_cli space <space_id>");
+            Logger::error("Usage: xcli space <space_id>");
             return;
         }
 
