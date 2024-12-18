@@ -49,34 +49,34 @@ cd XCLI
 ### Basic Command Structure
 
 ```bash
-twitter_cli <command> [options]
+xcli <command> [options]
 ```
 
 ### Available Commands
 
 - **`auth`**: Authenticate with Twitter using OAuth 2.0.
   ```bash
-  twitter_cli auth
+  xcli auth
   ```
 
 - **`get`**: Perform a GET request to a specified API endpoint.
   ```bash
-  twitter_cli get <endpoint> [key=value ...]
+  xcli get <endpoint> [key=value ...]
   ```
 
   Example:
   ```bash
-  twitter_cli get /2/users/by/username/johndoe user.fields=id,name,username
+  xcli get /2/users/by/username/johndoe user.fields=id,name,username
   ```
 
 - **`space`**: Fetch information about a Twitter Space using its Space ID.
   ```bash
-  twitter_cli space <space_id>
+  xcli space <space_id>
   ```
 
   Example:
   ```bash
-  twitter_cli space 1vOGwMNOZXYxB
+  xcli space 1vOGwMNOZXYxB
   ```
 
 ### Example Output
@@ -101,11 +101,10 @@ API Response:
 
 ```
 XCLI/
-├── source/               # Source code files
-│   ├── XCLI.cpp    # Main implementation of XCLI
+├── source/               # Source code files & Header files
+│   └── xcli.hpp    # Declaration of XCLI class
+│   ├── xcli.cpp    # Main implementation of XCLI
 │   └── ...
-├── include/              # Header files
-│   └── XCLI.hpp    # Declaration of XCLI class
 ├── third-party/          # Third-party dependencies (e.g., JSON library)
 ├── CMakeLists.txt        # CMake configuration
 └── README.md             # Project documentation
@@ -113,7 +112,7 @@ XCLI/
 
 ## Configuration
 
-Modify the following constants in `XCLI.hpp` as needed:
+Modify the following constants in `xcli.hpp` as needed:
 
 - `tokenFile`: Path to the JSON file where authentication tokens are stored.
 
