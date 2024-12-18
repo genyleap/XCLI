@@ -1,7 +1,3 @@
-Here’s a professional and comprehensive README for your GitHub project:
-
----
-
 # XCLI
 
 XCLI is a command-line interface (CLI) tool for interacting with the Twitter API. It allows developers to perform actions such as authenticating via OAuth 2.0, retrieving information from API endpoints, and working with Twitter Spaces. This project is designed with a focus on simplicity, modularity, and extensibility.
@@ -18,7 +14,7 @@ XCLI is a command-line interface (CLI) tool for interacting with the Twitter API
 - **C++ Compiler**: A modern C++ compiler with support for C++20 or higher (e.g., GCC 10+, Clang 12+, or MSVC 2019+).
 - **Dependencies**:
   - [cURL](https://curl.se/libcurl/) for HTTP requests.
-  - [JSON for Modern C++](https://github.com/nlohmann/json) for parsing and generating JSON.
+  - [JSON for Modern C++](https://github.com/open-source-parsers/jsoncpp) for parsing and generating JSON.
 - **Build Tools**:
   - [CMake](https://cmake.org/) for building the project.
 
@@ -151,7 +147,3 @@ This project is licensed under the [MIT License](LICENSE).
 - [Twitter API](https://developer.twitter.com/en/docs) for providing access to social data.
 - [cURL](https://curl.se/) for HTTP requests.
 - [JSON for Modern C++](https://github.com/open-source-parsers/jsoncpp) for JSON parsing.
-
----
-
-Feel free to customize the placeholders (e.g., `genyleap` in the repository URL) to match your project specifics.
